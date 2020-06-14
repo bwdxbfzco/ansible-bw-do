@@ -1,5 +1,13 @@
 ---
-# Digital Ocean Playbook
- - name: Gather information about user account
-   digital_ocean_account_info:
-     oauth_token: "{{ bw_do_oauth_token }}"
+# playbook for digital ocean
+ - name: "digital ocean playbook "
+   hosts: localhost
+   tasks:
+     - name: Gather information about user account
+       digital_ocean_sshkey_info:
+        oauth_token: "ba9ff2d0561f7ed468ea0bb9ace84359bd0bab6533a503cbc5c2756c55daf6b1"
+       register: do_fact
+
+     - name: print fact
+       debug: 
+         msg: "{{ do_fact }}"
