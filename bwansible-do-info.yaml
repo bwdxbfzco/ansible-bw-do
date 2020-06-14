@@ -1,0 +1,3 @@
+- name: Gather information about user account
+  digital_ocean_account_info:
+    oauth_token: "{{ bw_do_oauth_token }}"
