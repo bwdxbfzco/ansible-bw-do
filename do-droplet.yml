@@ -5,7 +5,7 @@
   connection: local
 
   tasks:
-    - set_facts:
+    - set_fact:
         _bw_cmd: "project_create"
       when: (do_project_id|length == 0)
   
