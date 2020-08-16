@@ -1,0 +1,88 @@
+---
+
+- set_fact:
+    _snapshotid: {{ lookup('pipe','date +%Y-%m-%d-%H-%M-%S') }}
+
+- name: Including Variable
+  include_vars: vars/main.yml
+
+- name: Reboot Droplet
+  uri:
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"type\":\"reboot\"}"      
+  ignore_errors: yes
+  when: (bw_cmd == "reboot_droplet")
+  register: _bw_do_reboot_droplet_result
+  
+- name: Reset Droplet
+  uri:
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"type\":\"power_cycle\"}"      
+  ignore_errors: yes
+  when: (bw_cmd == "reset_droplet")
+  register: _bw_do_reset_droplet_result
+
+- name: Resize Droplet
+  uri:
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"type\":\"resize\", \"disk\": true, \"size\": \"{{ do_size }}\"}"      
+  ignore_errors: yes
+  when: (bw_cmd == "resize_droplet") and (do_size|length > 0)
+  register: _bw_do_resize_droplet_result
+  
+- name: Rebuild Droplet
+  uri:
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"type\":\"rebuild\", \"image\": \"{{ do_image }}\"}"      
+  ignore_errors: yes
+  when: (bw_cmd == "rebuild_droplet") and (do_image|length > 0)
+  register: _bw_do_rebuild_droplet_result 
+  
+  
+- name: Snapshot Droplet
+  uri:
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"type\":\"snapshot\", \"name\": \"{{ do_instance_name }}{{ _snapshotid }}\"}"      
+  ignore_errors: yes
+  when: (bw_cmd == "snapshot_droplet")
+  register: _bw_do_snapshot_droplet_result   
