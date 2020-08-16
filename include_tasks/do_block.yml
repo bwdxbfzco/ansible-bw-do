@@ -56,17 +56,17 @@
   
 - name: Block Resize
   uri:
-    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    url: "{{ url }}/{{ version }}/volumes/{{ do_volume_name }}/actions"
     method: POST
     validate_certs: false
     return_content: yes
-    status_code: 201
+    status_code: 202
     headers:
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
     body_format: json
-    body: "{\"type\":\"power_cycle\"}"      
+    body: "{\"type\":\"resize\", \"size_gigabytes\": \"{{ do_volume_size }}\", \"region\": \"{{ do_region }}\"}"
   ignore_errors: yes
-  when: (bw_cmd == "reset_droplet")
+  when: (bw_cmd == "resize_volume")
   register: _bw_do_reset_droplet_result
   
