@@ -6,10 +6,10 @@
 
   tasks:
     - name: Include Project Creation
-      include_tasks: include/do_projects.yml
+      include_tasks: include_tasks/do_projects.yml
   
     - name: Include DO droplet creation
-      include_tasks: include/do_droplet_creation.yml
+      include_tasks: include_tasks/do_droplet_creation.yml
       register: _do_droplet_creation_result
       when: (bw_cmd == "create")
    
