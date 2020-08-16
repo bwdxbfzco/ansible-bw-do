@@ -21,11 +21,11 @@
     
 - debug:
     msg: "{{ _bw_do_project_result.json.project.id }}"
-  when: (_bw_do_project_result is defined)
+  when: (_bw_do_project_result is defined) and (_bw_cmd == "project_create")
     
 - set_fact:
     _do_project_id: "{{ _bw_do_project_result.json.project.id }}"
-  when: (_bw_do_project_result is defined)
+  when: (_bw_do_project_result is defined) and (_bw_cmd == "project_create")
   
 - name: Assign Resources to Project
   uri:

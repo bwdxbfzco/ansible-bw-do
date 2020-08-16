@@ -24,4 +24,5 @@
       include_tasks: include_tasks/do_projects.yml
       vars:
         _bw_cmd: project_resource_assign
+        _do_project_id: "{{ do_project_id }}"
       when: (droplet_id is defined and do_project_id|length > 0)
