@@ -50,6 +50,7 @@
     command: create
     api_token: "{{ do_token }}"
     region: "{{ do_region }}"
+    volume_name: "{{ do_volume_name }}"
   when: (bw_cmd == "delete_volume")
   register: _bw_do_delete_volume_result   
   
