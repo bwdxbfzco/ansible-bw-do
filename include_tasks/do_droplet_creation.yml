@@ -14,5 +14,5 @@
   register: _digital_ocean_droplet_result
   
 - debug:
-    msg: "{{ _digital_ocean_droplet_result.droplet.ip_address }}"
+    msg: "{{ _digital_ocean_droplet_result }}"
   
