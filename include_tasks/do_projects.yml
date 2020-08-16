@@ -29,7 +29,7 @@
   
 - name: Assign Resources to Project
   uri:
-    url: "{{ url }}/{{ version }}/{{ projects }}/{{_do_project_id}}"
+    url: "{{ url }}/{{ version }}/{{ projects }}/{{_do_project_id}}/resources"
     method: POST
     validate_certs: false
     return_content: yes
