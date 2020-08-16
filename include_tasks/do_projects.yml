@@ -27,5 +27,4 @@
     _do_project_id: "{{ _bw_do_project_result.json.id }}"
   when: (_bw_do_project_result is defined)
   
-- name: Assign resources to DO Project
   
