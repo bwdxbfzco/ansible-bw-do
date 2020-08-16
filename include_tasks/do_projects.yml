@@ -3,7 +3,7 @@
 - name: Including Variable
   include_vars: vars/main.yml
   
-- name: Creating Do Tag
+- name: Creating Do Project
   uri:
     url: "{{ url }}/{{ version }}/{{ projects }}"
     method: POST
@@ -14,9 +14,18 @@
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
     body_format: json
-    body: "{\"name\":\"my-web-api\", \"description\": \"My website API\", \"purpose\": \"Service or API\", \"environment\": \"Production\"}"
+    body: "{\"name\":\"{{ do_project_name }}\", \"description\": \"{{ do_project_desc }}\", \"environment\": \"Production\"}"
   ignore_errors: yes
   register: _bw_do_project_result
+  when: (_bw_cmd == "project_create")
     
 - debug:
-    msg: "{{ _bw_do_project_result }}"
+    msg: "{{ _bw_do_project_result.json.id }}"
+  when: (_bw_do_project_result is defined)
+    
+- set_fact:
+    _do_project_id: "{{ _bw_do_project_result.json.id }}"
+  when: (_bw_do_project_result is defined)
+  
+- name: Assign resources to DO Project
+  
