@@ -20,6 +20,7 @@
   
 - debug:
     msg: "{{ _do_volume_id }}"
+  when: (_do_volume_id is defined)
 
 - name: Attaching Block Storage
   digital_ocean_block_storage:
