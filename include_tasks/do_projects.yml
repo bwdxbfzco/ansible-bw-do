@@ -17,15 +17,15 @@
     body: "{\"name\":\"{{ do_project_name }}\", \"description\": \"{{ do_project_desc }}\", \"purpose\": \"Web Application\" ,\"environment\": \"Production\"}"
   ignore_errors: yes
   register: _bw_do_project_result
-  when: (_bw_cmd == "project_create")
+  when: (_bw_cmd == "create_project")
     
 - debug:
     msg: "{{ _bw_do_project_result.json.project.id }}"
-  when: (_bw_do_project_result is defined) and (_bw_cmd == "project_create")
+  when: (_bw_do_project_result is defined) and (_bw_cmd == "create_project")
     
 - set_fact:
     _do_project_id: "{{ _bw_do_project_result.json.project.id }}"
-  when: (_bw_do_project_result is defined) and (_bw_cmd == "project_create")
+  when: (_bw_do_project_result is defined) and (_bw_cmd == "create_project")
   
 - name: Assign Resources to Project
   uri:
@@ -40,6 +40,6 @@
     body_format: json
     body: "{\"resoures\":[\"do:droplet:{{ droplet_id }}\"]}"
   ignore_errors: yes
-  when: (_bw_cmd == "project_resource_assign")
+  when: (_bw_cmd == "assign_project_resource")
   
   
