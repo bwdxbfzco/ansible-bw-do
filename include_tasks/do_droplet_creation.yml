@@ -3,11 +3,16 @@
 - name: Creating DO Droplet
   digital_ocean_droplet:
     state: present
-    name: "{{ do_vm_name }}"
+    name: "{{ do_instance_name }}"
     oauth_token: "{{ do_token }}"
-    size: 
-    region: 
-    image:
+    size: "{{ do_size }}"
+    region: "{{ do_region }}" 
+    image: "{{ do_image }}"
     wait_timeout: 500
+    monitoring: yes
+    ssh_keys: [27943159]
   register: _digital_ocean_droplet_result
+  
+- debug:
+    msg: "{{ _digital_ocean_droplet_result.ip_address }}"
   
