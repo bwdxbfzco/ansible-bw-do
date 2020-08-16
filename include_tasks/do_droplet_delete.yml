@@ -5,7 +5,7 @@
 
 - name: Delete Droplet
   uri:
-    url: "{{ url }}/{{ version }}/droplets/{{_do_project_id}}"
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}"
     method: DELETE
     validate_certs: false
     return_content: yes
