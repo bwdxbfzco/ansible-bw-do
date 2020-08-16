@@ -13,6 +13,7 @@
     ssh_keys: [27943159]
   register: _digital_ocean_droplet_result
   
-- debug:
-    msg: "{{ _digital_ocean_droplet_result }}"
+- set_fact:
+    droplet_id: "{{ _digital_ocean_droplet_result.data.droplet.id }}"
+    ip_address: "{{ _digital_ocean_droplet_result.data.droplet.ip_address }}"
   
