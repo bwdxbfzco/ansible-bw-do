@@ -18,7 +18,7 @@
     user_data: |
       #cloud-config
       ssh_authorized_keys:
-        - "{{ do_public_key }}"
+        - {{ do_public_key }}
   register: _digital_ocean_droplet_result
   
 - set_fact:
