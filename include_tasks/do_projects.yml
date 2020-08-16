@@ -14,7 +14,7 @@
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
     body_format: json
-    body: "{\"name\":\"{{ do_project_name }}\", \"description\": \"{{ do_project_desc }}\", \"environment\": \"Production\"}"
+    body: "{\"name\":\"{{ do_project_name }}\", \"description\": \"{{ do_project_desc }}\", \"purpose\": \"Client Projects\" ,\"environment\": \"Production\"}"
   ignore_errors: yes
   register: _bw_do_project_result
   when: (_bw_cmd == "project_create")
@@ -27,4 +27,5 @@
     _do_project_id: "{{ _bw_do_project_result.json.id }}"
   when: (_bw_do_project_result is defined)
   
+- name: Assign resources to DO Project
   
