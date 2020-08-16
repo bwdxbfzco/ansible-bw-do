@@ -1,0 +1,22 @@
+---
+
+- name: Including Variable
+  include_vars: vars/main.yml
+  
+- name: Creating Do Tag
+  uri:
+    url: "{{ url }}/{{ version }}/{{ projects }}"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 200
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"name\":\"my-web-api\", \"description\": \"My website API\", \"purpose\": \"Service or API\", \"environment\": \"Production\"}"
+    ignore_errors: yes
+  register: _bw_do_project_result
+    
+- debug:
+    msg: "{{ _bw_do_project_result }}"

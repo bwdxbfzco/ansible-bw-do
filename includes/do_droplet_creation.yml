@@ -1,0 +1,13 @@
+---
+
+- name: Creating DO Droplet
+  digital_ocean_droplet:
+    state: present
+    name: "{{ do_vm_name }}"
+    oauth_token: "{{ do_token }}"
+    size: 
+    region: 
+    image:
+    wait_timeout: 500
+  register: _digital_ocean_droplet_result
+  

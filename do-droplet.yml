@@ -1,0 +1,15 @@
+---
+
+# playbook for digital ocean
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Include Project Creation
+      include_tasks: include/do_projects.yml
+  
+    - name: Include DO droplet creation
+      include_tasks: include/do_droplet_creation.yml
+      register: _do_droplet_creation_result
+      when: (bw_cmd == "create")
+   
