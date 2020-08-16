@@ -14,7 +14,7 @@
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
     body_format: json
-    body: "{\"name\":\"{{ do_project_name }}\", \"description\": \"{{ do_project_desc }}\", \"purpose\": \"Client Projects\" ,\"environment\": \"Production\"}"
+    body: "{\"name\":\"{{ do_project_name }}\", \"description\": \"{{ do_project_desc }}\", \"purpose\": \"Web Application\" ,\"environment\": \"Production\"}"
   ignore_errors: yes
   register: _bw_do_project_result
   when: (_bw_cmd == "project_create")
