@@ -33,6 +33,5 @@
         state: absent
         name: "{{ do_instance_name }}"
         oauth_token: "{{ do_token }}"
-        region: "{{ do_region }}"
         wait_timeout: 500
       when: (bw_cmd is defined) and (bw_cmd == "delete")
