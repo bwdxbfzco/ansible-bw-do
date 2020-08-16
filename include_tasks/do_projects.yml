@@ -9,7 +9,7 @@
     method: POST
     validate_certs: false
     return_content: yes
-    status_code: 200
+    status_code: 201
     headers:
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
@@ -20,11 +20,11 @@
   when: (_bw_cmd == "project_create")
     
 - debug:
-    msg: "{{ _bw_do_project_result.json.id }}"
+    msg: "{{ _bw_do_project_result.json.project.id }}"
   when: (_bw_do_project_result is defined)
     
 - set_fact:
-    _do_project_id: "{{ _bw_do_project_result.json.id }}"
+    _do_project_id: "{{ _bw_do_project_result.json.project.id }}"
   when: (_bw_do_project_result is defined)
   
   
