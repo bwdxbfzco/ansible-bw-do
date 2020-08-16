@@ -27,4 +27,19 @@
     _do_project_id: "{{ _bw_do_project_result.json.project.id }}"
   when: (_bw_do_project_result is defined)
   
+- name: Assign Resources to Project
+  uri:
+    url: "{{ url }}/{{ version }}/{{ projects }}/{{_do_project_id}}"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"resoures\":\"do:droplet:{{ droplet_id }}\"}"
+  ignore_errors: yes
+  when: (_bw_cmd == "project_resource_assign")
+  
   

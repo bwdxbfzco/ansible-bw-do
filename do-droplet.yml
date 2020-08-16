@@ -18,5 +18,10 @@
       when: (bw_cmd is defined) and (bw_cmd == "create")
     
     - debug:
-        msg: "{{ droplet_id }} {{ ip_address }}"
+        msg: "Id: {{ droplet_id }} IP Address: {{ ip_address }}"
    
+    - name: Include Resource Assign
+      include_tasks: include_tasks/do_projects.yml
+      vars:
+        _bw_cmd: project_resource_assign
+      when: (droplet_id is defined and do_project_id|length > 0)
