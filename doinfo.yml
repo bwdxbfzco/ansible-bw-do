@@ -5,4 +5,4 @@
    tasks:
      - name: print fact
        debug: 
-         msg: "{{ ansible_env  }}"
+         msg: "{{ do_token }}"
