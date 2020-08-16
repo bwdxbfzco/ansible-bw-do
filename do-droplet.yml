@@ -7,11 +7,11 @@
   tasks:
     - set_fact:
         _bw_cmd: "project_create"
-      when: (do_project_id|length == 0)
+      when: (do_project_id|length == 0) and (bw_cmd == "create")
   
     - name: Include Project Creation
       include_tasks: include_tasks/do_projects.yml
-      when: (do_project_id|length == 0)
+      when: (do_project_id|length == 0) and (bw_cmd == "create")
   
     - name: Include DO droplet creation
       include_tasks: include_tasks/do_droplet_creation.yml
@@ -19,13 +19,14 @@
     
     - debug:
         msg: "Id: {{ droplet_id }} IP Address: {{ ip_address }}"
+      when: (droplet_id is defined) and (ip_address is defined)
    
     - name: Include Resource Assign
       include_tasks: include_tasks/do_projects.yml
       vars:
         _bw_cmd: project_resource_assign
         _do_project_id: "{{ do_project_id }}"
-      when: (droplet_id is defined and do_project_id|length > 0)
+      when: (droplet_id is defined) and (do_project_id|length > 0) and (bw_cmd == "create")
       
     - name: Delete DO droplet
       digital_ocean_droplet:
