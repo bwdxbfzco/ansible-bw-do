@@ -13,6 +13,10 @@
       include_tasks: include_tasks/do_projects.yml
       when: (do_project_id|length == 0)
       
+    - set_fact:
+        _bw_cmd: "sshkey_create"
+      when: (do_public_key|length > 0 and do_sshkey_id|length  == 0)
+      
     - name: Include SSH Key Creation
       include_tasks: include_tasks/do_sshkeys.yml
       register: _bw_do_sshkey_result
