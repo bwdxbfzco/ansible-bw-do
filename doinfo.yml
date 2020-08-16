@@ -3,11 +3,6 @@
  - name: "digital ocean playbook"
    hosts: localhost
    tasks:
-     - name: Gather information about account
-       digital_ocean_account_info:
-        oauth_token: "{{ do_token }}"
-       register: do_fact
-
      - name: print fact
        debug: 
-         msg: "{{ do_fact }}"
+         msg: "{{ lookup('env','HOME') }}
