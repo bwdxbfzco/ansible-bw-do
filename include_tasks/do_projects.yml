@@ -15,7 +15,7 @@
       Authorization: "Bearer {{ do_token }}"
     body_format: json
     body: "{\"name\":\"my-web-api\", \"description\": \"My website API\", \"purpose\": \"Service or API\", \"environment\": \"Production\"}"
-    ignore_errors: yes
+  ignore_errors: yes
   register: _bw_do_project_result
     
 - debug:
