@@ -38,6 +38,6 @@
       
     - name: DO Block Storage
       include_tasks: include_tasks/do_block.yml
-      when: (bw_cmd is defined) and (bw_cmd == "create_volume" or bw_cmd == "create_attach_volume" or bw_cmd == "attach_volume" or bw_cmd == "delete_volume" or bw_cmd == "detach_volume")
+      when: (bw_cmd is defined) and (bw_cmd == "create_volume" or bw_cmd == "create_attach_volume" or bw_cmd == "attach_volume" or bw_cmd == "delete_volume" or bw_cmd == "detach_volume" or bw_cmd == "resize_volume")
 
       
