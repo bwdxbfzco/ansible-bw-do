@@ -27,7 +27,6 @@
     command: attach
     api_token: "{{ do_token }}"
     region: "{{ do_region }}"
-    block_size: "{{ do_volume_size }}"
     volume_name: "{{ do_volume_name }}"
     droplet_id: "{{ do_instance_name }}"
   when: (bw_cmd == "attach_volume" or bw_cmd == "create_attach_volume") and (do_instance_name is defined)
@@ -40,7 +39,6 @@
     command: attach
     api_token: "{{ do_token }}"
     region: "{{ do_region }}"
-    block_size: "{{ do_volume_size }}"
     volume_name: "{{ do_volume_name }}"
     droplet_id: "{{ do_instance_name }}"
   when: (bw_cmd == "detach_volume") and (do_instance_name is defined)
@@ -52,7 +50,6 @@
     command: create
     api_token: "{{ do_token }}"
     region: "{{ do_region }}"
-    block_size: "{{ do_volume_size }}"
   when: (bw_cmd == "delete_volume")
   register: _bw_do_delete_volume_result   
   
