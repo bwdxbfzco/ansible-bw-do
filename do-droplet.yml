@@ -32,4 +32,5 @@
         state: absent
         name: "{{ do_instance_name }}"
         oauth_token: "{{ do_token }}"
+        region: "{{ do_region }}" 
       when: (bw_cmd is defined) and (bw_cmd == "delete")
