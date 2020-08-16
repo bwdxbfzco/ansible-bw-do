@@ -15,10 +15,10 @@
     wait_timeout: 500
     monitoring: yes
     ssh_keys: [27943159]
-    user_data: '|
+    user_data: |
       #cloud-config
       ssh_authorized_keys:
-        - {{ do_public_key }}'
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtTwH0+wPvtE7GpnbgClY/B1rRP+31uGUfduv5hJuuZ1whA9+fnEIL/H5JR6knPBPvQ4ppE1Axz51Q2FSQK3cIAJt35UnKU9HHlqsy58i+H8GohGTdf26Ts3x6KjYT2e9iqrH7IhXO8Mi7wwWCcmai8+wccbmN9LMLk9hP3/EDy3qiUfc/2ociSxvuOt3qejMUFH0Of/kdJz/tDGyhu2xWuIsrU0/3LVlCq1pmXBInJpq4Z5/BLLxEjJ4hP6qsBwJ4EzCl/Zyg2VyCDEMXjNCI0uILxPqSKL29i1sumyJD+KQNKdR2OAeFzwYs5hKRFiB/xkeWvRcFsJRY6SF4NC0D support@buzinessware.com
   register: _digital_ocean_droplet_result
   
 - set_fact:
