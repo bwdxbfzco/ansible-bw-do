@@ -15,7 +15,6 @@
   
     - name: Include DO droplet creation
       include_tasks: include_tasks/do_droplet_creation.yml
-      register: _do_droplet_creation_result
       when: (bw_cmd is defined) and (bw_cmd == "create")
     
     - debug:
