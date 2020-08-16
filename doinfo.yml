@@ -5,4 +5,4 @@
    tasks:
      - name: print fact
        debug: 
-         msg: "{{ lookup('env','HOME') }}"
+         msg: "{{ ansible_env  }}"
