@@ -38,7 +38,7 @@
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
     body_format: json
-    body: "{\"resoures\":\"do:droplet:{{ droplet_id }}\"}"
+    body: "{\"resoures\":[\"do:droplet:{{ droplet_id }}\"]}"
   ignore_errors: yes
   when: (_bw_cmd == "project_resource_assign")
   
