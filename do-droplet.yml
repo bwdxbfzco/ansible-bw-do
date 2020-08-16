@@ -5,6 +5,10 @@
   connection: local
 
   tasks:
+    - set_facts:
+        _bw_cmd: "project_create"
+      when: (do_project_id|length == 0)
+  
     - name: Include Project Creation
       include_tasks: include_tasks/do_projects.yml
       when: (do_project_id|length == 0)
