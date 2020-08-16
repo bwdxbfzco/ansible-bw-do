@@ -7,7 +7,7 @@
   tasks:
     - name: Include Project Creation
       include_tasks: include_tasks/do_projects.yml
-      when: (do_project_id is not defined)
+      when: (do_project_id|length == 0)
   
     - name: Include DO droplet creation
       include_tasks: include_tasks/do_droplet_creation.yml
