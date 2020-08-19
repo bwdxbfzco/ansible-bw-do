@@ -23,7 +23,8 @@
    
     - name: Set Stats for Workflow
       set_stats:
-        ip_address: "{{ ip_address }}"
+        data:
+          ip_address: "{{ ip_address }}"
       when: (droplet_id is defined) and (ip_address is defined)
            
     - name: Include Resource Assign
