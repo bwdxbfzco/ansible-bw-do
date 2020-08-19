@@ -21,10 +21,9 @@
         msg: "Id: {{ droplet_id }} IP Address: {{ ip_address }}"
       when: (droplet_id is defined) and (ip_address is defined)
    
-    - name: Add DO hosts to inventory groups
-      add_host:
-        name: "{{ ip_address }}"
-        groups: "do"
+    - name: Set Stats for Workflow
+      set_stats:
+        ip_address: "{{ ip_address }}"
       when: (droplet_id is defined) and (ip_address is defined)
            
     - name: Include Resource Assign
