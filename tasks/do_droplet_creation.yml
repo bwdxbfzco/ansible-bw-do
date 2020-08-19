@@ -2,12 +2,12 @@
 
 - name: Creating DO Droplet
   digital_ocean_droplet:
-    state: present
+    state: "{{ do_instance_state|default('present')}}"
     name: "{{ do_instance_name }}"
     oauth_token: "{{ do_token }}"
-    size: "{{ do_size }}"
-    region: "{{ do_region }}" 
-    image: "{{ do_image }}"
+    size: "{{ do_size|default('s-1vcpu-1gb')}}"
+    region: "{{ do_region|default('nyc3') }}" 
+    image: "{{ do_image|default('ubuntu-18-04-x64') }}"
     wait_timeout: 500
     monitoring: yes
     ssh_keys: [27943159]

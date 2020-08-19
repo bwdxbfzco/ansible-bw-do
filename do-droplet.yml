@@ -10,34 +10,40 @@
       when: (do_project_id|length == 0) and (bw_cmd == "create_droplet")
   
     - name: Include Project Creation
-      include_tasks: include_tasks/do_projects.yml
+      include_tasks: tasks/do_projects.yml
       when: (do_project_id|length == 0) and (bw_cmd == "create_droplet")
   
     - name: Include DO droplet creation
-      include_tasks: include_tasks/do_droplet_creation.yml
+      include_tasks: tasks/do_droplet_creation.yml
       when: (bw_cmd is defined) and (bw_cmd == "create_droplet")
     
     - debug:
         msg: "Id: {{ droplet_id }} IP Address: {{ ip_address }}"
       when: (droplet_id is defined) and (ip_address is defined)
    
+    - name: Add DO hosts to inventory groups
+      add_hosts:
+        name: "{{ ip_address }}"
+        groups: "do"
+      when: (droplet_id is defined) and (ip_address is defined)
+           
     - name: Include Resource Assign
-      include_tasks: include_tasks/do_projects.yml
+      include_tasks: tasks/do_projects.yml
       vars:
         _bw_cmd: assign_project_resource
         _do_project_id: "{{ do_project_id }}"
       when: (droplet_id is defined) and (do_project_id|length > 0) and (bw_cmd == "create_droplet")
       
     - name: Delete DO droplet
-      include_tasks: include_tasks/do_droplet_delete.yml
+      include_tasks: tasks/do_droplet_delete.yml
       when: (bw_cmd is defined) and (bw_cmd == "delete_droplet")
       
     - name: DO droplet actions
-      include_tasks: include_tasks/do_droplet_actions.yml
+      include_tasks: tasks/do_droplet_actions.yml
       when: (bw_cmd is defined) and (bw_cmd == "reboot_droplet" or bw_cmd == "reset_droplet" or bw_cmd == "resize_droplet" or bw_cmd == "rebuild_droplet")
       
     - name: DO Block Storage
-      include_tasks: include_tasks/do_block.yml
+      include_tasks: tasks/do_block.yml
       when: (bw_cmd is defined) and (bw_cmd == "create_volume" or bw_cmd == "create_attach_volume" or bw_cmd == "attach_volume" or bw_cmd == "delete_volume" or bw_cmd == "detach_volume" or bw_cmd == "resize_volume")
 
       
