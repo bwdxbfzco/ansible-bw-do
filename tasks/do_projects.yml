@@ -37,7 +37,7 @@
     method: POST
     validate_certs: false
     return_content: yes
-    status_code: 201
+    status_code: 200
     headers:
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
