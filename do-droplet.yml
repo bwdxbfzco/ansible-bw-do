@@ -21,12 +21,12 @@
         msg: "Id: {{ droplet_id }} IP Address: {{ ip_address }}"
       when: (droplet_id is defined) and (ip_address is defined)
    
-    - name: Set Stats for Workflow
-      set_stats:
-        data:
-          ip_address: "{{ ip_address }}"
-      when: (droplet_id is defined) and (ip_address is defined)
-           
+    - name: Add droplet to host
+      include_tasks: tasks/addhost.yml
+      vars:
+        inventory_id: 33
+      when: (ip_address is defined)
+                 
     - name: Include Resource Assign
       include_tasks: tasks/do_projects.yml
       vars:
