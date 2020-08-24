@@ -49,3 +49,4 @@
     - name: Waiting for Droplet to start
       pause:
         seconds: 30
+      when: (bw_cmd is defined) and (bw_cmd == "create_droplet")
