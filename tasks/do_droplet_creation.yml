@@ -10,6 +10,7 @@
     image: "{{ do_image|default('ubuntu-18-04-x64') }}"
     wait_timeout: 500
     monitoring: yes
+    unique_name: yes
     ssh_keys: [27943159]
     user_data: |
       #cloud-config
