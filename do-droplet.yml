@@ -15,7 +15,7 @@
   
     - name: Include DO droplet creation
       include_tasks: tasks/do_droplet_creation.yml
-      when: (bw_cmd is defined) and (bw_cmd == "create_droplet") and *(do_instance_name|length > 0)
+      when: (bw_cmd is defined) and (bw_cmd == "create_droplet") and (do_instance_name|length > 0)
     
     - debug:
         msg: "Id: {{ droplet_id }} IP Address: {{ ip_address }}"
