@@ -2,7 +2,7 @@
 
 - name: save host
   uri:
-    url: "http://10.10.0.4/api/v2/hosts/"
+    url: "http://10.10.0.4/api/v2/inventories/{{ inventory_id }}/hosts/"
     user: "admin"
     password: "spiderMan05"
     method: POST
