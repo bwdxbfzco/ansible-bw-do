@@ -46,4 +46,7 @@
       when: (bw_cmd is defined) and (bw_cmd == "create_droplet")
             
   roles:
-    - { role: anoop.awx, when: "(ip_address is defined)", "vars": "inventory_id: 33"}
+    - anoop.awx
+      vars:
+        inventory_id: 33
+      when: "(ip_address is defined)"
