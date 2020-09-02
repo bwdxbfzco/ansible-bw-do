@@ -3,6 +3,8 @@
 # playbook for digital ocean
 - hosts: localhost
   connection: local
+  vars_files:
+    - defaults/main.yml  
 
   tasks:
     - set_fact:
