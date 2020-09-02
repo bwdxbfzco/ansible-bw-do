@@ -20,13 +20,7 @@
     - debug:
         msg: "Id: {{ droplet_id }} IP Address: {{ ip_address }}"
       when: (droplet_id is defined) and (ip_address is defined)
-   
-    - name: Add droplet to host
-      include_tasks: tasks/addhost.yml
-      vars:
-        inventory_id: 33
-      when: (ip_address is defined)
-                 
+                    
     - name: Include Resource Assign
       include_tasks: tasks/do_projects.yml
       vars:
@@ -50,3 +44,6 @@
       pause:
         seconds: 30
       when: (bw_cmd is defined) and (bw_cmd == "create_droplet")
+            
+    roles:
+      - { role: anoop.awx, when: "(ip_address is defined)", "vars": "inventory_id: 33"}

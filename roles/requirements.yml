@@ -1,0 +1,8 @@
+---
+roles:
+  # RabbitMQ Role
+  - name: anoop.rabbitmqapi
+    src: https://github.com/bwdxbfzco/anoop.rabbitmqapi.git
+    
+  - name: anoop.awx
+    src: https://github.com/bwdxbfzco/anoop.awx.git
