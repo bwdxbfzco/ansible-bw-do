@@ -44,7 +44,7 @@
       import_role:
         name: anoop.awx
       vars:
-        awx_inventory_id: 33
+        awx_inventory_id: "{{ inventory_id }}"
         awx_admin_password: spiderMan05
       when: "(ip_address is defined)"
       

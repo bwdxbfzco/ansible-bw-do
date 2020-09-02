@@ -13,7 +13,7 @@
     headers:
       Accept: "application/json"
     body_format: json
-    body: "{\"inventory\": {{ inventory_id }},\"name\":\"{{ ip_address }}\", \"variables\": \"ansible_port: 22\\nansible_user: root\"}"
+    body: "{\"inventory\": {{ inventory_id }},\"name\":\"{{ ip_address }}\", \"variables\": \"ansible_port: 22\\nansible_user: root\\nansible_become: yes\"}"
   ignore_errors: yes 
   when: (ip_address is defined)
   
