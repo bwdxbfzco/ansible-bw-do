@@ -50,4 +50,5 @@
         name: anoop.awx
       vars:
         inventory_id: 33
+        awx_admin_password: spiderMan05
       when: "(ip_address is defined)"
