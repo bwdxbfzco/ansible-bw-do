@@ -17,7 +17,7 @@
     body: "{\"name\":\"{{ do_project_name }}\", \"public_key\": \"{{ do_public_key }}\""
   ignore_errors: yes
   register: _bw_do_sshkey_result
-  when: (_bw_cmd == "sshkey_create" and do_public_key is defined and do_public_key|length > 0)
+  when: (_bw_do_cmd == "sshkey_create" and do_public_key is defined and do_public_key|length > 0)
     
 - debug:
     msg: "{{ _bw_do_sshkey_result }}"

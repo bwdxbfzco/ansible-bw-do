@@ -19,7 +19,7 @@
     body_format: json
     body: "{\"type\":\"reboot\"}"      
   ignore_errors: yes
-  when: (bw_cmd == "reboot_droplet")
+  when: (bw_do_cmd == "reboot_droplet")
   register: _bw_do_reboot_droplet_result
   
 - name: Reset Droplet
@@ -35,7 +35,7 @@
     body_format: json
     body: "{\"type\":\"power_cycle\"}"      
   ignore_errors: yes
-  when: (bw_cmd == "reset_droplet")
+  when: (bw_do_cmd == "reset_droplet")
   register: _bw_do_reset_droplet_result
 
 - name: Resize Droplet
@@ -51,7 +51,7 @@
     body_format: json
     body: "{\"type\":\"resize\", \"disk\": true, \"size\": \"{{ do_size }}\"}"      
   ignore_errors: yes
-  when: (bw_cmd == "resize_droplet") and (do_size|length > 0)
+  when: (bw_do_cmd == "resize_droplet") and (do_size|length > 0)
   register: _bw_do_resize_droplet_result
   
 - name: Rebuild Droplet
@@ -67,7 +67,7 @@
     body_format: json
     body: "{\"type\":\"rebuild\", \"image\": \"{{ do_image }}\"}"      
   ignore_errors: yes
-  when: (bw_cmd == "rebuild_droplet") and (do_image|length > 0)
+  when: (bw_do_cmd == "rebuild_droplet") and (do_image|length > 0)
   register: _bw_do_rebuild_droplet_result 
   
   
@@ -84,5 +84,5 @@
     body_format: json
     body: "{\"type\":\"snapshot\", \"name\": \"{{ do_instance_name }}{{ _snapshotid }}\"}"      
   ignore_errors: yes
-  when: (bw_cmd == "snapshot_droplet")
+  when: (bw_do_cmd == "snapshot_droplet")
   register: _bw_do_snapshot_droplet_result   

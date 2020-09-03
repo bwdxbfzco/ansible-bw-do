@@ -14,4 +14,4 @@
       Accept: "application/json"
       Authorization: "Bearer {{ do_token }}"
   ignore_errors: yes
-  when: (bw_cmd == "delete_droplet")
+  when: (bw_do_cmd == "delete_droplet")

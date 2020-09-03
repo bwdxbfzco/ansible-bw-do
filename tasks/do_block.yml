@@ -11,12 +11,12 @@
     region: "{{ do_region }}"
     block_size: "{{ do_volume_size }}"
     volume_name: "{{ do_volume_name }}"
-  when: (bw_cmd == "create_volume" or bw_cmd == "create_attach_volume")
+  when: (bw_do_cmd == "create_volume" or bw_do_cmd == "create_attach_volume")
   register: _bw_do_create_volume_result
   
 - set_fact:
     _do_volume_id: "{{ _bw_do_create_volume_result }}"
-  when: (_bw_do_create_volume_result is defined) and (bw_cmd == "create_volume" or bw_cmd == "create_attach_volume")
+  when: (_bw_do_create_volume_result is defined) and (bw_do_cmd == "create_volume" or bw_do_cmd == "create_attach_volume")
   
 - debug:
     msg: "{{ _do_volume_id }}"
@@ -30,7 +30,7 @@
     region: "{{ do_region }}"
     volume_name: "{{ do_volume_name }}"
     droplet_id: "{{ do_instance_name }}"
-  when: (bw_cmd == "attach_volume" or bw_cmd == "create_attach_volume") and (do_instance_name is defined)
+  when: (bw_do_cmd == "attach_volume" or bw_do_cmd == "create_attach_volume") and (do_instance_name is defined)
   register: _bw_do_attach_volume_result
   
   
@@ -42,7 +42,7 @@
     region: "{{ do_region }}"
     volume_name: "{{ do_volume_name }}"
     droplet_id: "{{ do_instance_name }}"
-  when: (bw_cmd == "detach_volume") and (do_instance_name is defined)
+  when: (bw_do_cmd == "detach_volume") and (do_instance_name is defined)
   register: _bw_do_detach_volume_result  
   
 - name: Deleting Block Storage
@@ -52,7 +52,7 @@
     api_token: "{{ do_token }}"
     region: "{{ do_region }}"
     volume_name: "{{ do_volume_name }}"
-  when: (bw_cmd == "delete_volume")
+  when: (bw_do_cmd == "delete_volume")
   register: _bw_do_delete_volume_result
   
 - name: Block Resize
@@ -68,6 +68,6 @@
     body_format: json
     body: "{\"type\":\"resize\", \"size_gigabytes\": {{ do_volume_size }}, \"region\": \"{{ do_region }}\"}"
   ignore_errors: yes
-  when: (bw_cmd == "resize_volume")
+  when: (bw_do_cmd == "resize_volume")
   register: _bw_do_reset_droplet_result
   
