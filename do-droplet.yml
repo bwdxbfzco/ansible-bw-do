@@ -41,15 +41,7 @@
     - name: DO Block Storage
       include_tasks: tasks/do_block.yml
       when: (bw_do_cmd is defined) and (bw_do_cmd == "create_volume" or bw_do_cmd == "create_attach_volume" or bw_do_cmd == "attach_volume" or bw_do_cmd == "delete_volume" or bw_do_cmd == "detach_volume" or bw_do_cmd == "resize_volume")
-            
-    - name: Add Host
-      import_role:
-        name: anoop.awx
-      vars:
-        bw_awx_inventory_id: "{{ inventory_id }}"
-        bw_awx_admin_password: spiderMan05
-      when: "(ip_address is defined)"
-      
+                 
     - name: Waiting for Droplet to start
       pause:
         seconds: 30
@@ -61,3 +53,10 @@
           vmid: "{{ droplet_id }}"
       when: (droplet_id is defined)
   
+    - name: Add Host
+      import_role:
+        name: anoop.awx
+      vars:
+        bw_awx_inventory_id: "{{ inventory_id }}"
+        bw_awx_admin_password: spiderMan05
+      when: "(ip_address is defined)"  
