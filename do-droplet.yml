@@ -59,11 +59,11 @@
     - name: set variable for create account
       set_fact:
         _result: "{\"ansible_data\": {\"vmid\":\"{{ droplet_id }}\",\"ipaddres\":\"{{ ip_address }}\"}"
-      when: (droplet_id is defined) and (ip_address is defined) and (bw_sb_cmd == "create_droplet")
+      when: (droplet_id is defined) and (ip_address is defined) and (bw_do_cmd == "create_droplet")
              
     - name: Response back to BW
       import_role:
         name: anoop.bwresponse
       vars:
         bw_response_body: "{{ _result }}"
-      when: (bw_sb_cmd == "create_droplet") and (_result is defined)      
+      when: (bw_do_cmd == "create_droplet") and (_result is defined)      
