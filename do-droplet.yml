@@ -64,7 +64,7 @@
   # Setting Json Data to post to BW Response
     - name: set variable for create account
       set_fact:
-        _result: "{\"ansible_data\": {\"vmid\":\"{{ vmid | default(NULL)}}\",\"ipaddress\":\"{{ ip_address | default(NULL) }}\"}"
+        _result: "{\"ansible_data\": {\"vmid\":\"{{ vmid | default(\"\")}}\",\"ipaddress\":\"{{ ip_address | default(\"\") }}\"}"
       when: (bw_do_cmd == "delete_droplet") and (bw_custom_data|length > 0)
              
     - name: Response back to BW
