@@ -8,7 +8,7 @@
 
   tasks:
     - set_fact:
-        _bw_cmd: "create_project"
+        _bw_do_cmd: "create_project"
       when: (do_project_id|length == 0) and (bw_do_cmd == "create_droplet") and (do_project_name|length > 0)
   
     - name: Include Project Creation
