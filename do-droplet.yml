@@ -55,15 +55,9 @@
         seconds: 30
       when: (bw_do_cmd is defined) and (bw_do_cmd == "create_droplet")
       
-  # Setting Json Data to post to BW Response
-    - name: set variable for create account
-      set_fact:
-        _result: "{\"ansible_data\": {\"vmid\":\"{{ droplet_id }}\",\"ipaddress\":\"{{ ip_address }}\"}"
-      when: (droplet_id is defined) and (ip_address is defined) and (bw_do_cmd == "create_droplet") and (bw_custom_data|length > 0)
-             
-    - name: Response back to BW
-      import_role:
-        name: anoop.bwresponse
-      vars:
-        bw_response_body: "{{ _result }}"
-      when: (bw_do_cmd == "create_droplet") and (_result is defined)      
+    - name: Set Stats for Workflow
+      set_stats:
+        data:
+          vmid: "{{ droplet_id }}"
+      when: (droplet_id is defined)
+  
