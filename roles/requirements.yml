@@ -6,3 +6,6 @@ roles:
     
   - name: anoop.awx
     src: https://github.com/bwdxbfzco/anoop.awx.git
+    
+  - name: anoop.bwresponse
+    src: https://github.com/bwdxbfzco/anoop.bwresponse.git    
