@@ -86,3 +86,33 @@
   ignore_errors: yes
   when: (bw_do_cmd == "snapshot_droplet")
   register: _bw_do_snapshot_droplet_result   
+  
+- name: Shutdown/Suspend Droplet
+  uri:
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"type\":\"shutdown\"}"      
+  ignore_errors: yes
+  when: (bw_do_cmd == "suspend_droplet") and (do_instance_name is defined)
+  
+- name: Resume/Unsuspend Droplet
+  uri:
+    url: "{{ url }}/{{ version }}/droplets/{{do_instance_name}}/actions"
+    method: POST
+    validate_certs: false
+    return_content: yes
+    status_code: 201
+    headers:
+      Accept: "application/json"
+      Authorization: "Bearer {{ do_token }}"
+    body_format: json
+    body: "{\"type\":\"power_on\"}"      
+  ignore_errors: yes
+  when: (bw_do_cmd == "unsuspend_droplet") and (do_instance_name is defined)  

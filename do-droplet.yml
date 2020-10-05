@@ -36,7 +36,7 @@
       
     - name: DO droplet actions
       include_tasks: tasks/do_droplet_actions.yml
-      when: (bw_do_cmd is defined) and (bw_do_cmd == "reboot_droplet" or bw_do_cmd == "reset_droplet" or bw_do_cmd == "resize_droplet" or bw_do_cmd == "rebuild_droplet")
+      when: (bw_do_cmd is defined) and (bw_do_cmd == "reboot_droplet" or bw_do_cmd == "reset_droplet" or bw_do_cmd == "resize_droplet" or bw_do_cmd == "rebuild_droplet" or bw_do_cmd == "suspend_droplet" or bw_do_cmd == "unsuspend_droplet") 
       
     - name: DO Block Storage
       include_tasks: tasks/do_block.yml
