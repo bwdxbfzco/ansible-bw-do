@@ -59,7 +59,7 @@
     - name: set variable for create account
       set_fact:
         _result: "{\"ansible_data\": {\"vmid\":\"{{ droplet_id }}\",\"ipaddress\":\"{{ ip_address }}\"}"
-      when: (droplet_id is defined) and (ip_address is defined) and (bw_do_cmd == "create_droplet") and (bw_custom_data|lenght > 0)
+      when: (droplet_id is defined) and (ip_address is defined) and (bw_do_cmd == "create_droplet") and (bw_custom_data|length > 0)
              
     - name: Response back to BW
       import_role:
