@@ -65,11 +65,16 @@
     - name: set variable for create account
       set_fact:
         _result: "{\"ansible_data\": {\"vmid\":\"{{ vmid | default(\"\")}}\",\"ipaddress\":\"{{ ip_address | default(\"\") }}\"}"
-      when: (bw_do_cmd == "delete_droplet") and (bw_custom_data|length > 0)
+      when: (bw_do_cmd == "create_droplet") and (bw_custom_data|length > 0)
              
+    - name: set variable for create volume
+      set_fact:
+        _result: "{\"ansible_data\": {\"volumeid\":\"{{ _do_volume_id }}\"}"
+      when: (bw_do_cmd == "create_volume") and (bw_custom_data|length > 0) and (_do_volume_id is defined)
+
     - name: Response back to BW
       import_role:
         name: anoop.bwresponse
       vars:
         bw_response_body: "{{ _result }}"
-      when: (_result is defined)            
+      when: (_result is defined) and (bw_do_cmd == "create_droplet") and (bw_custom_data|length > 0)          
