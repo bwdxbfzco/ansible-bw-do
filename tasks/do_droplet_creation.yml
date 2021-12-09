@@ -14,6 +14,9 @@
     ssh_keys: [27943159]
     user_data: |
       #cloud-config
+      password: $password
+      chpasswd: { expire: False }
+      ssh_pwauth: True
       ssh_authorized_keys:
         - {{ do_public_key }}
   register: _digital_ocean_droplet_result
