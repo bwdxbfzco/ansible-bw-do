@@ -13,7 +13,7 @@
     unique_name: yes
     ssh_keys: [27943159]
     user_data: "#cloud-config\nssh_pwauth: True\nusers:\n  - name: root\n    lock_passwd:
-                  false\n    hashed_passwd: '{{do_user_data}}'"
+                  false\n    hashed_passwd: {{ do_user_password | password_hash('sha512') }}"
   register: _digital_ocean_droplet_result
   
 - set_fact:
